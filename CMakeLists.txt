@@ -24,7 +24,6 @@ find_package(Eigen3 REQUIRED)
 find_package(Boost REQUIRED system filesystem date_time thread)
 
 
-
 catkin_package(
   LIBRARIES
   INCLUDE_DIRS
@@ -61,3 +60,14 @@ include_directories(/home/aditya/ws_moveit/src/moveit)
 add_executable(motion_planner src/planning.cpp)
 
 target_link_libraries(motion_planner ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(state src/states.cpp)
+
+target_link_libraries(state ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+catkin_install_python(PROGRAMS
+  src/states.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
